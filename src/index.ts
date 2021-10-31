@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { Pane } from 'tweakpane';
-import { Cat } from './cat';
-import { loader } from './utils';
+import { Cat } from './modules/cat';
+import { loader } from './modules/utils';
 
 // Setup
 const scene = new THREE.Scene();
