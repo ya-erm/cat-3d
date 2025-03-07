@@ -15,13 +15,13 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Use Node.js 16.x
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v1
         with:
-          node-version: 16.x
+          node-version: 22.x
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             **/node_modules
@@ -31,17 +31,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Instal dependencies
+      - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn build
-
-      - name: Archive build web artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: build
-          path: dist/*
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
