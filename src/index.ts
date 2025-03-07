@@ -51,8 +51,10 @@ loader.load('models/bowl/scene.gltf', (data) => {
     const material = new THREE.MeshPhysicalMaterial({ color: 0xee2222 });
     model.traverse((o: any) => {
         if (o.isMesh) o.material = material;
+        if (o.material) o.material.side = THREE.DoubleSide;
     });
-    model.scale.set(8, 8, 8);
+    model.scale.setScalar(0.03);
+    model.position.setY(5);
     scene.add(model);
 });
 
